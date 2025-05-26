@@ -3,15 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Derivadas;
-import java.util.Scanner;
+
 /**
  *
  * @author danie
  */
-public class Main {
-    public static void main(String[] args){
-        Derivadas derivada = new Derivadas();
-        
-        System.out.println(derivada.derivadaParcial("x^3*y^2 + 5*x*y + 7", "y"));
+public class Erros {
+    public String getErro(){
+        return "Erro ao processar os dados!";
     }
 }

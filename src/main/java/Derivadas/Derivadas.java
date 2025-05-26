@@ -3,44 +3,64 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Derivadas;
-import java.util.concurrent.TimeUnit;
+import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.core.eval.ExprEvaluator;
 /**
  *
  * @author danie
  */
 public class Derivadas {
-    //Calcula Derivadas Simples e Derivadas Compostas (Regra da Cadeia)
+    private ExprEvaluator derivaFuncao = new ExprEvaluator();
+    Erros erro = new Erros();
+    
+    //Calcula Derivadas Simples, Explicitas e Derivadas Compostas (Regra da Cadeia) //Funciona
     public String calculaDerivada(String expressao, String variavel){
-        ExprEvaluator derivada = new ExprEvaluator();
-        String entrada = "D(" + expressao + ", " + variavel + ")";
-        return derivada.evaluate(entrada).toString();
+        String entrada = "Simplify(D(" + expressao + ", " + variavel + "))";
+        return derivaFuncao.evaluate(entrada).toString();
     }
     
-    public String calculaDerivadaSegunda(String expressao, String variavel){
-        ExprEvaluator segundaOrdem = new ExprEvaluator();
-        String entrada = "D(" + expressao + ", " +"{" +variavel + ", 2})";
-        return segundaOrdem.evaluate(entrada).toString();
+    //Derivada de Segunda Ordem
+    public String calculaDerivadaSegunda(String expressao, String variavel){ //Funcionando
+        String entrada = "Simplify(D(" + expressao + ", " +"{" +variavel + ", 2}))";
+        return derivaFuncao.evaluate(entrada).toString();
     }
     
-    public String derivadaImplicita(String expressao, String igualdade){
-        //Cria a expressão da biblioteca pra calcular a derivada
-        ExprEvaluator derivadaImplicita = new ExprEvaluator();
-        String equacaox = "D(" + expressao + ", x)";
-        String resultado = derivadaImplicita.evaluate(equacaox).toString();
-        String equacaoy = "D("+expressao + ", y)";
-        String resultadoy = derivadaImplicita.evaluate(equacaoy).toString();
-        String solveImplicita = "Solve(" + resultado + ", "+igualdade+")";
-        return derivadaImplicita.evaluate(resultadoy).toString();
+    //Derivada Implicita
+    public String derivadaImplicita(String equacao) { //Funcionando
+        String X = derivaFuncao.evaluate("D(" + equacao + ", x)").toString();
+        String Y = derivaFuncao.evaluate("D(" + equacao + ", y)").toString();
+        return derivaFuncao.evaluate("Simplify(-(" + X + ")/(" + Y + "))").toString();
     }
     
+    //Calcula derivada Implicita de Segunda Ordem
+    public String segundaDerivadaImplicita(String equacao){ //Funcionando
+        //Calculando as derivadas de primeira Ordem
+        String Fx = derivaFuncao.evaluate("D(" + equacao + ", x)").toString();
+        String Fy = derivaFuncao.evaluate("D(" + equacao + ", y)").toString();
+        
+        //Calcula derivada de Segunda Ordem
+        String Fxx = derivaFuncao.evaluate("D(D(" + equacao + ", x), x)").toString();
+        String Fxy = derivaFuncao.evaluate("D(D(" + equacao + ", x), y)").toString();
+        String Fyy = derivaFuncao.evaluate("D(D(" + equacao + ", y), y)").toString();
+        
+        String primeiraOrdem = "(-(" + Fx + ")/("+ Fy +"))";
+        
+        //Formula de Derivação de Segunda Ordem Implícita
+        String numerador = "-(" + Fxx + " + 2*(" + Fxy + ")*" + primeiraOrdem + " + (" + Fyy + ")*(" + primeiraOrdem + ")^2)";
+        String denominador = Fy;
+        
+        String derivadaDeSegundaOrdem = "Simplify(("+ numerador +")/("+ denominador +"))";
+        return derivaFuncao.evaluate(derivadaDeSegundaOrdem).toString();
+    }
     
-//    public String derivadaImplicita(String expressao, String igualdade){
-//        ExprEvaluator derivadaImplicita = new ExprEvaluator();
-//        
-//        // Deriva ambos os lados diretamente na equação e resolve para D(y,x)
-//        String solveImplicita = "Solve(D(" + expressao + ", x) == D(" + igualdade + ", x), D(y,x))";
-//        
-//        return derivadaImplicita.evaluate(solveImplicita).toString();
-//    }
+    //Para calcular na interface, deve passar a variavel que quer derivar em relação a função
+    public String derivadaParcial(String expressao, String variavel){//Funcionando
+        IExpr derivadaParcial = derivaFuncao.eval("D("+ expressao +", "+ variavel +")");
+        return derivadaParcial.toString();
+    }
+     //Derivada Parcial de segunda Ordem
+    public String derivadaParcialSegunda(String expressao, String variavel){//Funcionando
+        IExpr derivadaParcial = derivaFuncao.eval("Simplify(D(" + expressao + ", " +"{" +variavel + ", 2}))");
+        return derivadaParcial.toString();
+    }
 }
