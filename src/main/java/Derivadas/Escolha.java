@@ -3,15 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Derivadas;
-import java.util.Scanner;
+
 /**
  *
  * @author danie
  */
-public class Main {
-    public static void main(String[] args){
-        Derivadas derivada = new Derivadas();
-        
-        System.out.println(derivada.calculaDerivada("sqrt(x^2 + 3*x + 2)", "x"));
-    }
+public class Escolha {
+    public static String escolhaDerivada;
 }
