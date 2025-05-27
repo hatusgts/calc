@@ -38,7 +38,7 @@ public class Derivadas {
     public String derivadaImplicita(String equacao) { //Funcionando
         String X = derivaFuncao.evaluate("D(" + equacao + ", x)").toString();
         String Y = derivaFuncao.evaluate("D(" + equacao + ", y)").toString();
-        return derivaFuncao.evaluate("Simplify(-(" + X + ")/(" + Y + "))").toString();
+        return derivaFuncao.evaluate("Simplify[(" + X + ")/(" + Y + ")]").toString();
     }
     
     //Calcula derivada Implicita de Segunda Ordem

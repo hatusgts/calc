@@ -164,10 +164,10 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBoxOrdem2" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jCheckBoxOrdem1" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxOrdem2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextFieldVariavel" min="-2" max="-2" attributes="0"/>
@@ -199,13 +199,15 @@
                   <Component id="jButtonVariavelY" alignment="3" pref="53" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonNumero0" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                  <Component id="jButtonSinaligual" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                  <Component id="jButtonVariavelX" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonSeno" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButtonCosseno" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="jButtonC_LimparTela" alignment="1" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonNumero0" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jButtonSinaligual" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jButtonVariavelX" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="jButtonCosseno" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jButtonVoltar" min="-2" max="-2" attributes="0"/>

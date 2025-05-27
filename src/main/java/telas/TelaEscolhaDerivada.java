@@ -133,24 +133,21 @@ public class TelaEscolhaDerivada extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDevExplicita12ActionPerformed
 
     private void jButtonDevImplicitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevImplicitaActionPerformed
-        String escolha = "DerivadaImplicita";
-        derivada.setEscolhaDerivada(escolha);
+        Escolha.escolhaDerivada = "DerivadaImplicita";
         TelaDerivada janelaDerivada = new TelaDerivada();
         janelaDerivada.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonDevImplicitaActionPerformed
 
     private void jButtonDevCompostasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevCompostasActionPerformed
-        String escolha = "DerivadaComposta";
-        derivada.setEscolhaDerivada(escolha);
+        Escolha.escolhaDerivada = "DerivadaComposta";
         TelaDerivada janelaDerivada = new TelaDerivada();
         janelaDerivada.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonDevCompostasActionPerformed
 
     private void jButtonDevParciaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevParciaisActionPerformed
-        String escolha = "DerivadaParcial";
-        derivada.setEscolhaDerivada(escolha);
+        Escolha.escolhaDerivada = "DerivadaParcial";
         TelaDerivada janelaDerivada = new TelaDerivada();
         janelaDerivada.setVisible(true);
         dispose();
