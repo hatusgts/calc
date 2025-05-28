@@ -10,17 +10,7 @@ import org.matheclipse.core.eval.ExprEvaluator;
  * @author danie
  */
 public class Derivadas {
-    private String escolha;
     private ExprEvaluator derivaFuncao = new ExprEvaluator();
-    Erros erro = new Erros();
-    
-    public Derivadas(String escolha){
-        this.escolha = escolha;
-    }
-    
-    public Derivadas(){
-        this.escolha = null;
-    }
     
     //Calcula Derivadas Simples, Explicitas e Derivadas Compostas (Regra da Cadeia) //Funciona
     public String calculaDerivada(String expressao, String variavel){
@@ -30,27 +20,27 @@ public class Derivadas {
     
     //Derivada de Segunda Ordem
     public String calculaDerivadaSegunda(String expressao, String variavel){ //Funcionando
-        String entrada = "Simplify(D(" + expressao + ", " +"{" +variavel + ", 2}))";
+        String entrada = "D(" + expressao + ", " +"{" +variavel + ", 2})";
         return derivaFuncao.evaluate(entrada).toString();
     }
     
     //Derivada Implicita
-    public String derivadaImplicita(String equacao) { //Funcionando
-        String X = derivaFuncao.evaluate("D(" + equacao + ", x)").toString();
-        String Y = derivaFuncao.evaluate("D(" + equacao + ", y)").toString();
-        return derivaFuncao.evaluate("Simplify[(" + X + ")/(" + Y + ")]").toString();
+    public String derivadaImplicita(String equacao, String variavelX, String variavelY) { //Funcionando
+        String X = derivaFuncao.evaluate("D(" + equacao + ", "+ variavelX +")").toString();
+        String Y = derivaFuncao.evaluate("D(" + equacao + ", "+ variavelY +")").toString();
+        return derivaFuncao.evaluate("Simplify[-(" + X + ")/(" + Y + ")]").toString();
     }
     
     //Calcula derivada Implicita de Segunda Ordem
-    public String segundaDerivadaImplicita(String equacao){ //Funcionando
+    public String segundaDerivadaImplicita(String equacao, String variavelX, String variavelY){ //Funcionando
         //Calculando as derivadas de primeira Ordem
-        String Fx = derivaFuncao.evaluate("D(" + equacao + ", x)").toString();
-        String Fy = derivaFuncao.evaluate("D(" + equacao + ", y)").toString();
+        String Fx = derivaFuncao.evaluate("D(" + equacao + ", "+ variavelX +")").toString();
+        String Fy = derivaFuncao.evaluate("D(" + equacao + ", "+ variavelY +")").toString();
         
         //Calcula derivada de Segunda Ordem
-        String Fxx = derivaFuncao.evaluate("D(D(" + equacao + ", x), x)").toString();
-        String Fxy = derivaFuncao.evaluate("D(D(" + equacao + ", x), y)").toString();
-        String Fyy = derivaFuncao.evaluate("D(D(" + equacao + ", y), y)").toString();
+        String Fxx = derivaFuncao.evaluate("D(D(" + equacao + ", "+ variavelX +"), "+ variavelX +")").toString();
+        String Fxy = derivaFuncao.evaluate("D(D(" + equacao + ", "+ variavelX +"), "+ variavelY +")").toString();
+        String Fyy = derivaFuncao.evaluate("D(D(" + equacao + ", "+ variavelY +"), "+ variavelY +")").toString();
         
         String primeiraOrdem = "(-(" + Fx + ")/("+ Fy +"))";
         
@@ -58,7 +48,7 @@ public class Derivadas {
         String numerador = "-(" + Fxx + " + 2*(" + Fxy + ")*" + primeiraOrdem + " + (" + Fyy + ")*(" + primeiraOrdem + ")^2)";
         String denominador = Fy;
         
-        String derivadaDeSegundaOrdem = "Simplify(("+ numerador +")/("+ denominador +"))";
+        String derivadaDeSegundaOrdem = "Simplify[("+ numerador +")/("+ denominador +")]";
         return derivaFuncao.evaluate(derivadaDeSegundaOrdem).toString();
     }
     
@@ -71,12 +61,5 @@ public class Derivadas {
     public String derivadaParcialSegunda(String expressao, String variavel){//Funcionando
         IExpr derivadaParcial = derivaFuncao.eval("Simplify(D(" + expressao + ", " +"{" +variavel + ", 2}))");
         return derivadaParcial.toString();
-    }
-     //Armazena a escolha do usuário em relação as Derivadas
-    public void setEscolhaDerivada(String escolha){
-        this.escolha = escolha;
-    }
-    public String getEscolhaDerivada(){
-        return escolha;
     }
 }

@@ -12,6 +12,6 @@ public class Main {
     public static void main(String[] args){
         Derivadas derivada = new Derivadas();
         
-        System.out.println(derivada.derivadaImplicita("x^2+y^2-25"));
+        System.out.println(derivada.derivadaImplicita("x^2+y^2-25", "x", "y"));
     }
 }

@@ -100,7 +100,7 @@ public class TelaEscolha extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDerivadasActionPerformed
 
     private void jButtonIntegraisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIntegraisActionPerformed
-        TelaIntegral interfaceIntegrais = new TelaIntegral();
+        TelaEscolhaIntegral interfaceIntegrais = new TelaEscolhaIntegral();
         dispose();
         interfaceIntegrais.setVisible(true);
     }//GEN-LAST:event_jButtonIntegraisActionPerformed

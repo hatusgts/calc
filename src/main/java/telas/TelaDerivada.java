@@ -18,6 +18,13 @@ public class TelaDerivada extends javax.swing.JFrame {
     public TelaDerivada() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        //Caso escolha, derivada Implicita
+        if(!Escolha.escolhaDerivada.equals("DerivadaImplicita")){
+            jTextFieldVariavelY.setEnabled(false);
+        }
+        
+        setTitle(Escolha.escolhaDerivada);
     }
 
     /**
@@ -64,8 +71,10 @@ public class TelaDerivada extends javax.swing.JFrame {
         jButtonC_LimparTela = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldVariavel = new javax.swing.JTextField();
+        jTextFieldVariavelX = new javax.swing.JTextField();
         jTextFieldResultado = new javax.swing.JTextField();
+        jTextFieldVariavelY = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -80,6 +89,7 @@ public class TelaDerivada extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextFieldCampo.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jTextFieldCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCampoActionPerformed(evt);
@@ -127,7 +137,7 @@ public class TelaDerivada extends javax.swing.JFrame {
             }
         });
 
-        jButtonExpoente.setText("X²");
+        jButtonExpoente.setText("^");
         jButtonExpoente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExpoenteActionPerformed(evt);
@@ -288,17 +298,27 @@ public class TelaDerivada extends javax.swing.JFrame {
 
         jLabel4.setText("Digite a variável:");
 
-        jTextFieldVariavel.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldVariavelX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldVariavelActionPerformed(evt);
+                jTextFieldVariavelXXActionPerformed(evt);
             }
         });
 
+        jTextFieldResultado.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jTextFieldResultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldResultadoActionPerformed(evt);
             }
         });
+
+        jTextFieldVariavelY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldVariavelYActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Resultado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -325,6 +345,41 @@ public class TelaDerivada extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldResultado, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jButtonVoltar)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                            .addComponent(jButtonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(jButtonDivisao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonExpoente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                            .addComponent(jButtonC_LimparTela, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonSinaligual, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(jButtonVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jButtonSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jButtonCosseno, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(21, 21, 21)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldVariavelY, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -352,40 +407,10 @@ public class TelaDerivada extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jButtonParentesesDir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButtonMultiplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButtonVoltar)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jButtonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jButtonDivisao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonExpoente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jButtonC_LimparTela, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonSinaligual, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jButtonVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jButtonCosseno, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jButtonVariavelY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(10, 10, 10))))
-                                        .addComponent(jTextFieldResultado, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jTextFieldVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 24, Short.MAX_VALUE)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jButtonVariavelY, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jButtonMultiplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(0, 12, Short.MAX_VALUE)))
                         .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
@@ -405,7 +430,9 @@ public class TelaDerivada extends javax.swing.JFrame {
                     .addComponent(jCheckBoxOrdem1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxOrdem2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldVariavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldVariavelY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,25 +450,28 @@ public class TelaDerivada extends javax.swing.JFrame {
                     .addComponent(jButtonParentesesDir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonMultiplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDivisao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExpoente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonVariavelY, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSeno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVariavelY, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDivisao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonExpoente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCosseno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonC_LimparTela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonSinaligual, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonCosseno, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
+                        .addComponent(jButtonVariavelX, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSeno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
                 .addComponent(jButtonVoltar)
-                .addGap(86, 86, 86)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -450,11 +480,19 @@ public class TelaDerivada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBoxOrdem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxOrdem1ActionPerformed
-        // TODO add your handling code here:
+        if(jCheckBoxOrdem1.isSelected()){
+            jCheckBoxOrdem2.setEnabled(false);
+        }else{
+            jCheckBoxOrdem2.setEnabled(true);
+        }
     }//GEN-LAST:event_jCheckBoxOrdem1ActionPerformed
 
     private void jCheckBoxOrdem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxOrdem2ActionPerformed
-        // TODO add your handling code here:
+        if(jCheckBoxOrdem2.isSelected()){
+            jCheckBoxOrdem1.setEnabled(false);
+        }else{
+            jCheckBoxOrdem1.setEnabled(true);
+        }
     }//GEN-LAST:event_jCheckBoxOrdem2ActionPerformed
 
     private void jButtonNumero4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNumero4ActionPerformed
@@ -552,8 +590,8 @@ public class TelaDerivada extends javax.swing.JFrame {
         //Verifica qual a escolha do usuário e qual checkbox está ativada
         if(escolhaDerivada.equals("DerivadaExplicita") && jCheckBoxOrdem1.isSelected()){ //Funciona, implementar pro restante
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.calculaDerivada(expressao, variavel));
@@ -562,8 +600,8 @@ public class TelaDerivada extends javax.swing.JFrame {
         
         else if(escolhaDerivada.equals("DerivadaExplicita") && jCheckBoxOrdem2.isSelected()){
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.calculaDerivadaSegunda(expressao, variavel));
@@ -572,26 +610,30 @@ public class TelaDerivada extends javax.swing.JFrame {
         
         else if(escolhaDerivada.equals("DerivadaImplicita") && jCheckBoxOrdem1.isSelected()){
             String expressao = jTextFieldCampo.getText();
+            String variavelX = jTextFieldVariavelX.getText();
+            String variavelY = jTextFieldVariavelY.getText();
             if(jTextFieldCampo.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
-                jTextFieldResultado.setText(derivada.derivadaImplicita(expressao));
+                jTextFieldResultado.setText(derivada.derivadaImplicita(expressao, variavelX, variavelY));
             }
         }
         
         else if(escolhaDerivada.equals("DerivadaImplicita") && jCheckBoxOrdem2.isSelected()){
             String expressao = jTextFieldCampo.getText();
+            String variavelX = jTextFieldVariavelX.getText();
+            String variavelY = jTextFieldVariavelY.getText();            
             if(jTextFieldCampo.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
-                jTextFieldResultado.setText(derivada.segundaDerivadaImplicita(expressao));
+                jTextFieldResultado.setText(derivada.segundaDerivadaImplicita(expressao, variavelX, variavelY));
             }
         }
         
         else if(escolhaDerivada.equals("DerivadaComposta") && jCheckBoxOrdem1.isSelected()){
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.calculaDerivada(expressao, variavel));
@@ -600,8 +642,8 @@ public class TelaDerivada extends javax.swing.JFrame {
         
         else if(escolhaDerivada.equals("DerivadaComposta") && jCheckBoxOrdem2.isSelected()){
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.calculaDerivadaSegunda(expressao, variavel));
@@ -610,8 +652,8 @@ public class TelaDerivada extends javax.swing.JFrame {
         
         else if(escolhaDerivada.equals("DerivadaParcial") && jCheckBoxOrdem1.isSelected()){
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.derivadaParcial(expressao, variavel));
@@ -620,8 +662,8 @@ public class TelaDerivada extends javax.swing.JFrame {
         
         else if(escolhaDerivada.equals("DerivadaParcial") && jCheckBoxOrdem2.isSelected()){
             String expressao = jTextFieldCampo.getText();
-            String variavel = jTextFieldVariavel.getText();
-            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavel.getText().isEmpty()){
+            String variavel = jTextFieldVariavelX.getText();
+            if(jTextFieldCampo.getText().isEmpty() || jTextFieldVariavelX.getText().isEmpty()){
                 jTextFieldCampo.setText("Erro, preenchimento obrigatório");
             }else{
                 jTextFieldResultado.setText(derivada.derivadaParcialSegunda(expressao, variavel));
@@ -731,13 +773,17 @@ public class TelaDerivada extends javax.swing.JFrame {
         interfaceEscolha.setVisible(true);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    private void jTextFieldVariavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVariavelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldVariavelActionPerformed
+    private void jTextFieldVariavelXXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVariavelXXActionPerformed
+
+    }//GEN-LAST:event_jTextFieldVariavelXXActionPerformed
 
     private void jTextFieldResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldResultadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldResultadoActionPerformed
+
+    private void jTextFieldVariavelYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVariavelYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldVariavelYActionPerformed
 
     /**
      * @param args the command line arguments
@@ -807,10 +853,12 @@ public class TelaDerivada extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextFieldCampo;
     private javax.swing.JTextField jTextFieldResultado;
-    private javax.swing.JTextField jTextFieldVariavel;
+    private javax.swing.JTextField jTextFieldVariavelX;
+    private javax.swing.JTextField jTextFieldVariavelY;
     // End of variables declaration//GEN-END:variables
 }
