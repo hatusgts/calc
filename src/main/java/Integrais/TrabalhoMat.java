@@ -31,7 +31,7 @@ public class TrabalhoMat {
             } else {
                 String expressaoNum = resultadoSimb.replace(indefinida, "(" + valorX + ")");
                 String valorNum = util.evaluate(expressaoNum).toString();
-                return "Integral simbólica: " + resultadoSimb + "\nIntegral numérica em x= " + valorX + ": " + valorNum;
+                return "Integral simbólica: " + resultadoSimb + "\nIntegral numérica em x = " + valorX + ": " + valorNum;
             }
             
         } catch (Exception e) {

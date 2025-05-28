@@ -357,7 +357,7 @@ public class TelaIntegralIndefinida extends JFrame {
         }
         try {
             String resultado = TrabalhoMat.calcularIntegralIndefinida(expressao, valorX);
-            areaResultado.setText("Integral indefinida de valor x:" +valorX+ ":\n" + resultado);
+            areaResultado.setText("Integral indefinida de "+ expressao +" :\n" + resultado);
         } catch (Exception e) {
             areaResultado.setText("Erro no cálculo da integral indefinida:\n" + e.getMessage());
         }
