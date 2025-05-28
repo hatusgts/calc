@@ -16,7 +16,7 @@ public class TelaIntegralDefinida extends JFrame {
 
     // Componentes da interface
     private JTextField campoFuncao;
-    private JTextField campoValorX;
+
     private JTextField campoLimiteInferior;
     private JTextField campoLimiteSuperior;
     private JTextArea areaResultado;
@@ -26,7 +26,7 @@ public class TelaIntegralDefinida extends JFrame {
 
     // Botões de operações
     private JButton btnIgual, btnSomar, btnSubtrair, btnMultiplicar, btnDividir;
-    private JButton btnRaiz, btnParentesesAbre, btnParentesesFecha, btnLimpar;
+    private JButton btnRaiz, btnParentesesAbre, btnParentesesFecha, btnLimpar, btnPotencia;
     private JButton btnVoltar;
 
     /**
@@ -45,7 +45,7 @@ public class TelaIntegralDefinida extends JFrame {
     private void inicializarComponentes() {
         // Campos de entrada
         campoFuncao = new JTextField();
-        campoValorX = new JTextField();
+
         campoLimiteInferior = new JTextField();
         campoLimiteSuperior = new JTextField();
 
@@ -67,6 +67,7 @@ public class TelaIntegralDefinida extends JFrame {
         btnRaiz = new JButton("√");
         btnParentesesAbre = new JButton("(");
         btnParentesesFecha = new JButton(")");
+        btnPotencia = new JButton("^");
         btnLimpar = new JButton("C");
         btnVoltar = new JButton("Voltar");
 
@@ -85,7 +86,7 @@ public class TelaIntegralDefinida extends JFrame {
 
         JLabel lblInstrucao = new JLabel("Insira a função:");
         JLabel lblFuncao = new JLabel("f(x)=");
-        JLabel lblValorX = new JLabel("Valor de x:");
+
         JLabel lblInicio = new JLabel("Início:");
         JLabel lblFinal = new JLabel("Final:");
 
@@ -106,14 +107,13 @@ public class TelaIntegralDefinida extends JFrame {
                                         .addComponent(lblTitulo, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                                         // Campos de entrada
                                         .addGroup(layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(lblFuncao)
-                                                        .addComponent(lblValorX))
+                                                        .addComponent(lblFuncao))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addComponent(lblInstrucao)
-                                                        .addComponent(campoFuncao, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(campoValorX, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(campoFuncao, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)))
                                         // Limites de integração
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(25, 25, 25)
@@ -151,9 +151,6 @@ public class TelaIntegralDefinida extends JFrame {
                                         .addComponent(campoFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblFuncao))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(campoValorX, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblValorX))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(campoLimiteInferior, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -187,7 +184,8 @@ public class TelaIntegralDefinida extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnSomar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                )
                 // Segunda linha: 4, 5, 6, -, (
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(botoesNumeros[4], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
@@ -196,9 +194,11 @@ public class TelaIntegralDefinida extends JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botoesNumeros[6], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+
+                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                )
                 // Terceira linha: 7, 8, 9, *, )
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(botoesNumeros[7], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
@@ -209,17 +209,21 @@ public class TelaIntegralDefinida extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnMultiplicar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                )
                 // Quarta linha: 0, =, /, C
                 .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+
+                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE));
+                        .addComponent(btnPotencia,GroupLayout.PREFERRED_SIZE,51,GroupLayout.PREFERRED_SIZE)
+                );
     }
 
     /**
@@ -235,15 +239,16 @@ public class TelaIntegralDefinida extends JFrame {
                         .addComponent(botoesNumeros[2], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[3], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSomar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Segunda linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(botoesNumeros[4], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[5], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[6], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Terceira linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -251,14 +256,16 @@ public class TelaIntegralDefinida extends JFrame {
                         .addComponent(botoesNumeros[8], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[9], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnMultiplicar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Quarta linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE));
+                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPotencia,GroupLayout.PREFERRED_SIZE,51,GroupLayout.PREFERRED_SIZE)
+                );
     }
 
     /**
@@ -300,6 +307,7 @@ public class TelaIntegralDefinida extends JFrame {
         btnRaiz.addActionListener(e -> adicionarTexto("√"));
         btnParentesesAbre.addActionListener(e -> adicionarTexto("("));
         btnParentesesFecha.addActionListener(e -> adicionarTexto(")"));
+        btnPotencia.addActionListener(e -> adicionarTexto("^"));
         btnLimpar.addActionListener(e -> limparCampos());
     }
 
@@ -308,8 +316,8 @@ public class TelaIntegralDefinida extends JFrame {
      */
     private void configurarJanela() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centraliza a janela
         pack(); // Ajusta o tamanho automaticamente
+        setLocationRelativeTo(null); // Centraliza a janela
         setTitle("Calculadora de Integrais Definidas");
     }
 
@@ -328,7 +336,7 @@ public class TelaIntegralDefinida extends JFrame {
      */
     private JTextField obterCampoAtivo() {
         if (campoFuncao.hasFocus()) return campoFuncao;
-        if (campoValorX.hasFocus()) return campoValorX;
+
         if (campoLimiteInferior.hasFocus()) return campoLimiteInferior;
         if (campoLimiteSuperior.hasFocus()) return campoLimiteSuperior;
         return campoFuncao; // Campo padrão
@@ -339,7 +347,7 @@ public class TelaIntegralDefinida extends JFrame {
      */
     private void limparCampos() {
         campoFuncao.setText("");
-        campoValorX.setText("");
+
         campoLimiteInferior.setText("");
         campoLimiteSuperior.setText("");
         areaResultado.setText("");

@@ -9,10 +9,9 @@ public class TrabalhoMat {
         ExprEvaluator util = new ExprEvaluator(false,(short) 100);
         
         String integral = "Integrate(" + expressao + ", {" + indefinida + ", " + limiteInf + ", " + limiteSup + "})";
-        
+
         try {
-            String resultadoSimb = util.evaluate(integral).toString();
-            return resultadoSimb;
+            return util.evaluate(integral).toString();
         } catch (Exception e) {
             return "Erro ao tentar calcular integral. Verifique a expressão inserida";
         }
@@ -38,5 +37,7 @@ public class TrabalhoMat {
         } catch (Exception e) {
             return "Erro ao tentar calcular integral. Verifique a expressão inserida";
         }
+
     }
+
 }

@@ -25,8 +25,8 @@ public class TelaIntegralIndefinida extends JFrame {
     private JButton[] botoesNumeros = new JButton[10];
 
     // Botões de operações
-    private JButton btnIgual, btnSomar, btnSubtrair, btnMultiplicar, btnDividir;
-    private JButton btnRaiz, btnParentesesAbre, btnParentesesFecha, btnLimpar;
+    private JButton btnIgual, btnSomar, btnSubtrair, btnMultiplicar, btnDividir, btnPotencia;
+    private JButton btnRaiz, btnParentesesAbre, btnParentesesFecha, btnLimpar, btnX, btnY;
     private JButton btnVoltar;
 
     /**
@@ -67,6 +67,9 @@ public class TelaIntegralIndefinida extends JFrame {
         btnRaiz = new JButton("√");
         btnParentesesAbre = new JButton("(");
         btnParentesesFecha = new JButton(")");
+        btnPotencia = new JButton("^");
+        btnX = new JButton("x");
+        btnY = new JButton("y");
         btnLimpar = new JButton("C");
         btnVoltar = new JButton("Voltar");
 
@@ -86,8 +89,7 @@ public class TelaIntegralIndefinida extends JFrame {
         JLabel lblInstrucao = new JLabel("Insira a função:");
         JLabel lblFuncao = new JLabel("f(x)=");
         JLabel lblValorX = new JLabel("Valor de x:");
-        JLabel lblInicio = new JLabel("Início:");
-        JLabel lblFinal = new JLabel("Final:");
+
 
         // ScrollPane para área de resultado
         JScrollPane scrollResultado = new JScrollPane(areaResultado);
@@ -114,16 +116,6 @@ public class TelaIntegralIndefinida extends JFrame {
                                                         .addComponent(lblInstrucao)
                                                         .addComponent(campoFuncao, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(campoValorX, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
-                                        // Limites de integração
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(25,25,25)
-                                                .addComponent(lblInicio)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(campoLimiteInferior, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblFinal)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(campoLimiteSuperior, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
                                         // Teclado numérico
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(56, 56, 56)
@@ -155,11 +147,6 @@ public class TelaIntegralIndefinida extends JFrame {
                                         .addComponent(campoValorX, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblValorX))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(campoLimiteInferior, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblInicio)
-                                        .addComponent(campoLimiteSuperior, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblFinal))
                                 .addGap(44, 44, 44)
                                 .addGroup(criarLayoutVerticalTeclado())
                                 .addGap(18, 18, 18)
@@ -187,7 +174,8 @@ public class TelaIntegralIndefinida extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnSomar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        )
                 // Segunda linha: 4, 5, 6, -, (
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(botoesNumeros[4], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
@@ -196,9 +184,11 @@ public class TelaIntegralIndefinida extends JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botoesNumeros[6], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+
+                                .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        )
                 // Terceira linha: 7, 8, 9, *, )
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(botoesNumeros[7], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
@@ -209,17 +199,21 @@ public class TelaIntegralIndefinida extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnMultiplicar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        )
                 // Quarta linha: 0, =, /, C
                 .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE));
+
+                                .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPotencia,GroupLayout.PREFERRED_SIZE,51,GroupLayout.PREFERRED_SIZE)
+                        );
     }
 
     /**
@@ -235,15 +229,16 @@ public class TelaIntegralIndefinida extends JFrame {
                         .addComponent(botoesNumeros[2], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[3], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSomar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Segunda linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(botoesNumeros[4], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[5], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[6], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSubtrair, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnParentesesAbre, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Terceira linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -251,14 +246,16 @@ public class TelaIntegralIndefinida extends JFrame {
                         .addComponent(botoesNumeros[8], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(botoesNumeros[9], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnMultiplicar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnParentesesFecha, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 // Quarta linha
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDividir, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE));
+                                .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botoesNumeros[0], GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnIgual, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRaiz, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPotencia,GroupLayout.PREFERRED_SIZE,51,GroupLayout.PREFERRED_SIZE)
+                        );
     }
 
     /**
@@ -300,6 +297,7 @@ public class TelaIntegralIndefinida extends JFrame {
         btnRaiz.addActionListener(e -> adicionarTexto("√"));
         btnParentesesAbre.addActionListener(e -> adicionarTexto("("));
         btnParentesesFecha.addActionListener(e -> adicionarTexto(")"));
+        btnPotencia.addActionListener(e -> adicionarTexto("^"));
         btnLimpar.addActionListener(e -> limparCampos());
     }
 
@@ -308,9 +306,9 @@ public class TelaIntegralIndefinida extends JFrame {
      */
     private void configurarJanela() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null); // Centraliza a janela
         pack(); // Ajusta o tamanho automaticamente
-        setTitle("Calculadora de Integrais");
+        setLocationRelativeTo(null); // Centraliza a janela
+        setTitle("Calculadora de Integrais Indefinidas");
     }
 
     /**
@@ -350,35 +348,20 @@ public class TelaIntegralIndefinida extends JFrame {
      */
     private void calcularIntegral() {
         String expressao = campoFuncao.getText().trim();
-        String limiteInferior = campoLimiteInferior.getText().trim();
-        String limiteSuperior = campoLimiteSuperior.getText().trim();
+        String valorX = campoValorX.getText().trim();
 
         // Validação dos campos obrigatórios
         if (expressao.isEmpty()) {
             areaResultado.setText("Erro: Por favor, insira uma função.");
             return;
         }
+        try {
+            String resultado = TrabalhoMat.calcularIntegralIndefinida(expressao, valorX);
+            areaResultado.setText("Integral indefinida de valor x:" +valorX+ ":\n" + resultado);
+        } catch (Exception e) {
+            areaResultado.setText("Erro no cálculo da integral indefinida:\n" + e.getMessage());
+        }
 
-        // Verifica se tem limites para integral definida
-        if (!limiteInferior.isEmpty() && !limiteSuperior.isEmpty()) {
-            try {
-                String resultado = TrabalhoMat.calcularIntegralDefinida(expressao, limiteInferior, limiteSuperior);
-                areaResultado.setText("Integral Definida de " + limiteInferior + " até " + limiteSuperior + ":\n" + resultado);
-            } catch (Exception e) {
-                areaResultado.setText("Erro no cálculo da integral definida:\n" + e.getMessage());
-            }
-        }
-        // Se não tem limites, só mostra a função (já que não tem método para indefinida)
-        else {
-            try {
-                // Como não existe o método calcularIntegralIndefinida, vamos só mostrar a função
-                areaResultado.setText("Função inserida: " + expressao + "\n\n" +
-                        "Para calcular a integral definida,\n" +
-                        "preencha os campos 'Início' e 'Final' com os limites.");
-            } catch (Exception e) {
-                areaResultado.setText("Erro: " + e.getMessage());
-            }
-        }
     }
 
     /**
