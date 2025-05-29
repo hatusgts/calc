@@ -1,6 +1,6 @@
 package telas;
 
-import Integrais.TrabalhoMat;
+import Integrais.Integrais;
 import telas.TelaEscolhaIntegral;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -356,7 +356,7 @@ public class TelaIntegralIndefinida extends JFrame {
             return;
         }
         try {
-            String resultado = TrabalhoMat.calcularIntegralIndefinida(expressao, valorX);
+            String resultado = Integrais.calcularIntegralIndefinida(expressao, valorX);
             areaResultado.setText("Integral indefinida de "+ expressao +" :\n" + resultado);
         } catch (Exception e) {
             areaResultado.setText("Erro no cálculo da integral indefinida:\n" + e.getMessage());

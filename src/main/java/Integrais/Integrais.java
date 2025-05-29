@@ -2,7 +2,7 @@ package Integrais;
 
 import org.matheclipse.core.eval.ExprEvaluator;
 
-public class TrabalhoMat {
+public class Integrais {
 
     public static String calcularIntegralDefinida(String expressao, String limiteInf, String limiteSup) {
         String indefinida = "x";

@@ -1,6 +1,6 @@
 package telas;
 
-import Integrais.TrabalhoMat;
+import Integrais.Integrais;
 import telas.TelaEscolhaIntegral;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -374,7 +374,7 @@ public class TelaIntegralDefinida extends JFrame {
 
         try {
             // Calcula a integral definida
-            String resultado = TrabalhoMat.calcularIntegralDefinida(expressao, limiteInferior, limiteSuperior);
+            String resultado = Integrais.calcularIntegralDefinida(expressao, limiteInferior, limiteSuperior);
             areaResultado.setText("Integral Definida de " + limiteInferior + " até " + limiteSuperior + ":\n\n" + resultado);
         } catch (Exception e) {
             areaResultado.setText("Erro no cálculo da integral definida:\n" + e.getMessage());
